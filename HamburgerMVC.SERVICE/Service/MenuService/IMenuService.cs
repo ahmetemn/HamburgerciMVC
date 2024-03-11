@@ -11,9 +11,9 @@ namespace HamburgerMVC.SERVICE.Service.MenuService
     public  interface IMenuService
     {
 
-        void Create(MenuCreateDTO model);
+        int Create(MenuCreateDTO model);
 
-        void Update(MenuUpdateVM model);
+        int Update(MenuUpdateVM model);
 
 
         Task<int> UpdateStatus(int id);
