@@ -3,9 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HamburgerciMVC.DATA", "HamburgerciMVC.DATA\HamburgerciMVC.DATA.csproj", "{22414077-63BA-41DE-B6A4-EC949C0DAF38}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HamburgerciMVC.DATA", "HamburgerciMVC.DATA\HamburgerciMVC.DATA.csproj", "{22414077-63BA-41DE-B6A4-EC949C0DAF38}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HamburgerciMVC.REPO", "HamburgerciMVC.REPO\HamburgerciMVC.REPO.csproj", "{F3130253-DFDE-47F0-BADB-5A1E27AD8200}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "HamburgerciMVC.REPO", "HamburgerciMVC.REPO\HamburgerciMVC.REPO.csproj", "{F3130253-DFDE-47F0-BADB-5A1E27AD8200}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HamburgerMVC.SERVICE", "HamburgerMVC.SERVICE\HamburgerMVC.SERVICE.csproj", "{E313807E-05E0-47EB-B617-01B95DD1D975}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HamburgerUI", "HamburgerUI\HamburgerUI.csproj", "{B3141C35-E2F4-4C2F-A529-45ED6C33405A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +25,14 @@ Global
 		{F3130253-DFDE-47F0-BADB-5A1E27AD8200}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F3130253-DFDE-47F0-BADB-5A1E27AD8200}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F3130253-DFDE-47F0-BADB-5A1E27AD8200}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E313807E-05E0-47EB-B617-01B95DD1D975}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E313807E-05E0-47EB-B617-01B95DD1D975}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E313807E-05E0-47EB-B617-01B95DD1D975}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E313807E-05E0-47EB-B617-01B95DD1D975}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3141C35-E2F4-4C2F-A529-45ED6C33405A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3141C35-E2F4-4C2F-A529-45ED6C33405A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3141C35-E2F4-4C2F-A529-45ED6C33405A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3141C35-E2F4-4C2F-A529-45ED6C33405A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
