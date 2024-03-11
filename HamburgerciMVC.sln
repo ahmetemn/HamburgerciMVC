@@ -5,6 +5,8 @@ VisualStudioVersion = 17.7.34221.43
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HamburgerciMVC.DATA", "HamburgerciMVC.DATA\HamburgerciMVC.DATA.csproj", "{22414077-63BA-41DE-B6A4-EC949C0DAF38}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HamburgerciMVC.REPO", "HamburgerciMVC.REPO\HamburgerciMVC.REPO.csproj", "{F3130253-DFDE-47F0-BADB-5A1E27AD8200}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{22414077-63BA-41DE-B6A4-EC949C0DAF38}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{22414077-63BA-41DE-B6A4-EC949C0DAF38}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{22414077-63BA-41DE-B6A4-EC949C0DAF38}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F3130253-DFDE-47F0-BADB-5A1E27AD8200}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F3130253-DFDE-47F0-BADB-5A1E27AD8200}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F3130253-DFDE-47F0-BADB-5A1E27AD8200}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F3130253-DFDE-47F0-BADB-5A1E27AD8200}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
