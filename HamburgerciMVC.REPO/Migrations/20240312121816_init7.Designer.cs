@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HamburgerciMVC.REPO.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20240311213034_init5")]
-    partial class init5
+    [Migration("20240312121816_init7")]
+    partial class init7
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -222,9 +222,6 @@ namespace HamburgerciMVC.REPO.Migrations
 
                     b.Property<DateTime>("DeletedDate")
                         .HasColumnType("datetime2");
-
-                    b.Property<int>("MenuId")
-                        .HasColumnType("int");
 
                     b.Property<int>("SiparisAdedi")
                         .HasColumnType("int");

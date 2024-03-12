@@ -15,7 +15,7 @@ namespace HamburgerciMVC.DATA.Concrate
 
         public  int SiparisAdedi { get; set; }
 
-        //public int MenuId { get; set; }
+
         public  ICollection<Menu> Menus { get; set; }
 
         public ICollection<EkstraMalzeme> EkstraMalzemes { get; set; }

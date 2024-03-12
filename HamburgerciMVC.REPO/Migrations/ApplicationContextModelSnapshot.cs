@@ -221,9 +221,6 @@ namespace HamburgerciMVC.REPO.Migrations
                     b.Property<DateTime>("DeletedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("MenuId")
-                        .HasColumnType("int");
-
                     b.Property<int>("SiparisAdedi")
                         .HasColumnType("int");
 

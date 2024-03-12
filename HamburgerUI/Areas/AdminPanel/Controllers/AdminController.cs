@@ -4,6 +4,7 @@ using HamburgerMVC.SERVICE.Models.VMs;
 using HamburgerMVC.SERVICE.Service.MenuService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 
 namespace HamburgerUI.Areas.AdminPanel.Controllers
 {
@@ -90,31 +91,33 @@ namespace HamburgerUI.Areas.AdminPanel.Controllers
         }
 
         [HttpGet]
-        public async Task<IActionResult> Edit(int id)
+        public async Task<IActionResult> Update(int id)
         {
             var menu = await _menuService.GetMenu(id);
             return View(menu);
         }
 
 
-
         [HttpPost]
-
-        public async Task<IActionResult> Edit(MenuUpdateVM model)
+        public  IActionResult Update( MenuUpdateVM menuUpdateVM)
         {
 
-      
-                var result = _menuService.Update(model);
-                if (result > 0)
+            if (ModelState.IsValid)
+            {
+                var result= _menuService.Update(menuUpdateVM);
+                if(result > 0)
                 {
-                    ViewBag.Success = true;
-                    return View(model);
+                    return View(menuUpdateVM); 
                 }
-           
+            }
+             
 
-            return View(model);
+              
 
+            return View(menuUpdateVM);
         }
+
+
 
 
     }
