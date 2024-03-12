@@ -5,6 +5,7 @@ using HamburgerMVC.SERVICE.Service.MenuService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
 
 namespace HamburgerUI.Areas.AdminPanel.Controllers
 {
@@ -90,37 +91,45 @@ namespace HamburgerUI.Areas.AdminPanel.Controllers
 
         }
 
+
+
         [HttpGet]
+
         public async Task<IActionResult> Update(int id)
         {
-            var menu = await _menuService.GetMenu(id);
-            return View(menu);
+             var menu =await _menuService.GetMenu(id);
+
+            return View(menu); 
         }
 
-
         [HttpPost]
-        public  IActionResult Update( MenuUpdateVM menuUpdateVM)
+
+        public IActionResult Update(MenuUpdateVM menuUpdateVM, IFormFile file)
         {
+            string imgName = "default.png";
 
-            if (ModelState.IsValid)
+            if (file != null)
             {
-                var result= _menuService.Update(menuUpdateVM);
-                if(result > 0)
-                {
-                    return View(menuUpdateVM); 
-                }
-            }
-             
 
-              
+                string imgExtension = Path.GetExtension(file.FileName);
+                imgName = Guid.NewGuid() + imgExtension;
+                string path = Path.Combine(Directory.GetCurrentDirectory(), $"wwwroot/img/hamburgerPhoto/{imgName}");
+                using var stream = new FileStream(path, FileMode.Create);
+                file.CopyTo(stream);
+
+            }
+            menuUpdateVM.ImagePath = imgName;
+            var result = _menuService.Update(menuUpdateVM);
+
+            if (result > 0)
+            {
+                return RedirectToAction("Listele");
+            }
 
             return View(menuUpdateVM);
         }
-
-
-
+        
+        
 
     }
-
-
 }

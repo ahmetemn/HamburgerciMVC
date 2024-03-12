@@ -9,12 +9,10 @@ namespace HamburgerMVC.SERVICE.Models.VMs
 {
     public class MenuUpdateVM
     {
+        public int ID { get; set; }
 
-      
-        public string MenuAdi { get; set; }
-
-        public double MenuFiyat { get; set; }
-
-      
+        public double MenuFiyati { get; set; }
+        public string Name { get; set; }
+        public string ImagePath { get; set; }
     }
 }

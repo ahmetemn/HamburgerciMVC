@@ -78,10 +78,12 @@ namespace HamburgerMVC.SERVICE.Service.MenuService
             var menu = await _menuHamburgerREPO.GetByIdAsync(id);
             return new MenuUpdateVM()
             {
-                MenuAdi = menu.MenuAdi,
-                
-                MenuFiyat =menu.MenuFiyat  ,
-             
+                ID=menu.Id,
+                Name = menu.MenuAdi,
+            
+                MenuFiyati =menu.MenuFiyat  ,
+            
+                ImagePath=menu.ImagePath ,
             };
         }
 
@@ -90,8 +92,10 @@ namespace HamburgerMVC.SERVICE.Service.MenuService
 
             var menu = new Menu()
             {
-                MenuAdi=model.MenuAdi,
-                MenuFiyat=model.MenuFiyat,
+                Id=model.ID,
+                MenuAdi=model.Name,
+                MenuFiyat=model.MenuFiyati,
+                ImagePath=model.ImagePath,
                
             };
 
