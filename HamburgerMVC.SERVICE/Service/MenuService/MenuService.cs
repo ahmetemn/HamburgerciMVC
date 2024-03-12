@@ -64,22 +64,24 @@ namespace HamburgerMVC.SERVICE.Service.MenuService
 
                 ID = x.Id,
                 Name = x.MenuAdi,
-                ImagePath = x.ImagePath,    
+                ImagePath = x.ImagePath, 
+                MenuFiyat = x.MenuFiyat,    
                 Status = x.Status
             }, orderBy: x => x.OrderBy(x => x.MenuAdi));
             return menu; 
         }
          
 
-        public async Task<MenuGetByIdVM> GetMenu(int id)
+        public async Task<MenuUpdateVM> GetMenu(int id)
         {
            
             var menu = await _menuHamburgerREPO.GetByIdAsync(id);
-            return new MenuGetByIdVM()
+            return new MenuUpdateVM()
             {
-                ID = menu.Id,
-                Name = menu.MenuAdi,
+                Id = menu.Id,
+                MenuAdi = menu.MenuAdi,
                 ImagePath = menu.ImagePath,
+                MenuFiyat =menu.MenuFiyat  ,
                 Status = menu.Status
             };
         }

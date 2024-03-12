@@ -95,22 +95,26 @@ namespace HamburgerUI.Areas.AdminPanel.Controllers
             var menu = await _menuService.GetMenu(id);
             return View(menu);
         }
+
+
+
         [HttpPost]
+
         public async Task<IActionResult> Edit(MenuUpdateVM model)
         {
-            if (ModelState.IsValid)
-            {
-                ViewBag.Success = false;
+
+      
                 var result = _menuService.Update(model);
                 if (result > 0)
                 {
                     ViewBag.Success = true;
                     return View(model);
                 }
-            }
-            return View(model);
-        }
+           
 
+            return View(model);
+
+        }
 
 
     }

@@ -1,4 +1,5 @@
-﻿@model HamburgerMVC.SERVICE.Models.VMs.MenuGetByIdVM
+﻿@using HamburgerMVC.SERVICE.Models.VMs;
+@model MenuUpdateVM
 
 @{
     ViewData["Title"] = "Edit";
@@ -15,23 +16,23 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
           
             <div class="form-group">
-                <label asp-for="Name" class="control-label"></label>
-                <input asp-for="Name" class="form-control" />
-                <span asp-validation-for="Name" class="text-danger"></span>
+                <label asp-for="MenuAdi" class="control-label"></label>
+                <input asp-for="MenuAdi" class="form-control" />
+                <span asp-validation-for="MenuAdi" class="text-danger"></span>
             </div>
 
 
             <div class="form-group">
-                <label asp-for="MenuFiyati" class="control-label"></label>
-                <input asp-for="MenuFiyati" class="form-control" />
-                <span asp-validation-for="MenuFiyati" class="text-danger"></span>
+                <label asp-for="MenuFiyat" class="control-label"></label>
+                <input asp-for="MenuFiyat" class="form-control" />
+                <span asp-validation-for="MenuFiyat" class="text-danger"></span>
             </div>
-            <div class="form-group">
+          @*   <div class="form-group">
                 <label asp-for="ImagePath" class="control-label"></label>
                 <input type="file" name="file" class="control-label" />
-                <img src="~/img/hamburgerPhoto/@Model.ImagePath" width="75" height="75" />
+            
                 <span asp-validation-for="ImagePath" class="text-danger"></span>
-            </div>
+            </div> *@
             
             <div class="form-group">
                 <input type="submit" value="Güncelle" class="btn btn-primary" />
