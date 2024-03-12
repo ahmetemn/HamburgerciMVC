@@ -13,6 +13,7 @@ namespace HamburgerciMVC.REPO.ConcrateREPO
     {
         public MenuHamburgerREPO(ApplicationContext context) : base(context)
         {
+
         }
     }
 }

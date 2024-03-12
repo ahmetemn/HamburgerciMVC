@@ -20,10 +20,10 @@ namespace HamburgerMVC.SERVICE.Service.MenuService
 
         Task<int> Delete(int id);
 
-        Task<List<MenuUpdateVM>> GetAllMenu();
+        Task<List<MenuGetAllVM>> GetAllMenu();
 
-        Task<List<MenuUpdateVM>> GetAllActiveMenu();
+        Task<List<MenuGetAllVM>> GetAllActiveMenu();
 
-        Task<MenuUpdateVM> GetMenu(int id);
+        Task<MenuGetByIdVM> GetMenu(int id);
     }
 }

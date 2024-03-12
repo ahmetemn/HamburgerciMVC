@@ -14,7 +14,5 @@ namespace HamburgerciMVC.DATA.Concrate
         public string ImagePath { get; set; }
 
 
-        public int SiparisId { get; set; }
-        public Siparis Siparis { get; set; }    
     }
 }

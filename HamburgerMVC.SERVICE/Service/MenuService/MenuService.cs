@@ -43,34 +43,75 @@ namespace HamburgerMVC.SERVICE.Service.MenuService
             return _menuHamburgerREPO.Delete(menu); 
         }
 
-        public Task<List<MenuUpdateVM>> GetAllActiveMenu()
+        public async Task<List<MenuGetAllVM>> GetAllActiveMenu()
         {
-            
+
+            var menu = await _menuHamburgerREPO.GetFilteredListAsync(select: x => new MenuGetAllVM() { ID = x.Id, Name = x.MenuAdi,ImagePath=x.ImagePath ,Status = x.Status },
+
+                    where: x => x.Status != Status.Deleted, orderBy: x => x.OrderBy(x => x.MenuAdi));
+
+            return menu; 
+
+
         }
 
-        public Task<List<MenuUpdateVM>> GetAllMenu()
+        public async Task<List<MenuGetAllVM>> GetAllMenu()
         {
-            throw new NotImplementedException();
+
+
+            var menu = await _menuHamburgerREPO.GetFilteredListAsync(select: x => new MenuGetAllVM()
+            {
+
+                ID = x.Id,
+                Name = x.MenuAdi,
+                ImagePath = x.ImagePath,    
+                Status = x.Status
+            }, orderBy: x => x.OrderBy(x => x.MenuAdi));
+            return menu; 
+        }
+         
+
+        public async Task<MenuGetByIdVM> GetMenu(int id)
+        {
+           
+            var menu = await _menuHamburgerREPO.GetByIdAsync(id);
+            return new MenuGetByIdVM()
+            {
+                ID = menu.Id,
+                Name = menu.MenuAdi,
+                ImagePath = menu.ImagePath,
+                Status = menu.Status
+            };
         }
 
-        public Task<MenuUpdateVM> GetMenu(int id)
+        public int Update(MenuUpdateVM model)
         {
-            throw new NotImplementedException();
+
+            var menu = new Menu()
+            {
+                MenuAdi=model.MenuAdi,
+                MenuFiyat=model.MenuFiyat,
+                ImagePath=model.ImagePath,
+            };
+
+            menu.Status = Status.Updated;
+            menu.UpdatedDate = DateTime.Now; 
+            return _menuHamburgerREPO.Update(menu); 
         }
 
-        public void Update(MenuUpdateVM model)
+        public async Task<int> UpdateStatus(int id)
         {
-            throw new NotImplementedException();
-        }
+            var menu = await _menuHamburgerREPO.GetByIdAsync(id); 
+            if(menu.Status==Status.Added)
+            {
+                menu.Status = Status.Deleted;
+            }
+            else
+            {
+                menu.Status = Status.Added; 
+            }
+            return _menuHamburgerREPO.Update(menu); 
 
-        public Task<int> UpdateStatus(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        int IMenuService.Update(MenuUpdateVM model)
-        {
-            throw new NotImplementedException();
         }
     }
 }

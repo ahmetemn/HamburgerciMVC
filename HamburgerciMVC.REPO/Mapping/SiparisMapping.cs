@@ -19,14 +19,11 @@ namespace HamburgerciMVC.DATA.Mapping
             builder.HasKey(x => x.Id);
             builder.Property(x => x.Id)
                 .HasColumnName("Siparis_Id")
-                .HasColumnType("integer")
+                .HasColumnType("int")
                 .HasColumnOrder(1);
 
 
-            builder.HasMany(x => x.Menus)
-                .WithOne(m => m.Siparis)
-                .HasForeignKey(m => m.SiparisId)
-                .OnDelete(DeleteBehavior.Cascade);
+         
 
             builder.HasMany(x => x.EkstraMalzemes)
                .WithOne(m => m.Siparis)

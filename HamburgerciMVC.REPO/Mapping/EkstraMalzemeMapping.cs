@@ -18,8 +18,8 @@ namespace HamburgerciMVC.DATA.Mapping
             builder.HasKey(e => e.Id);
 
             builder.Property(x => x.Id)
-                .HasColumnName("EkstraMalzemeAdi")
-                .HasColumnType("nvarchar")
+                .HasColumnName("EkstraMalzemeId")
+                .HasColumnType("int")
                 .HasColumnOrder(1);
 
 

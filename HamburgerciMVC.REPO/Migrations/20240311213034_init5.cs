@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace HamburgerciMVC.REPO.Migrations
 {
-    public partial class init : Migration
+    public partial class init5 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -158,12 +158,12 @@ namespace HamburgerciMVC.REPO.Migrations
                 name: "Siparis",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    Siparis_Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
                     SiparisBoyutu = table.Column<int>(type: "int", nullable: false),
                     SiparisAdedi = table.Column<int>(type: "int", nullable: false),
-                    UserId = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    AppUserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
+                    MenuId = table.Column<int>(type: "int", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -171,22 +171,23 @@ namespace HamburgerciMVC.REPO.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Siparis", x => x.Id);
+                    table.PrimaryKey("PK_Siparis", x => x.Siparis_Id);
                     table.ForeignKey(
-                        name: "FK_Siparis_AspNetUsers_AppUserId",
-                        column: x => x.AppUserId,
+                        name: "FK_Siparis_AspNetUsers_UserId",
+                        column: x => x.UserId,
                         principalTable: "AspNetUsers",
-                        principalColumn: "Id");
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
-                name: "EkstraMalzemes",
+                name: "EkstraMalzeme",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    EkstraMalzemeId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    EkstraMalzemeName = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    EkstraMalzemeFiyati = table.Column<double>(type: "float", nullable: false),
+                    EkstraMalzemeİsim = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: false),
+                    EkstraMalzemeFiyati = table.Column<decimal>(type: "decimal(38,17)", maxLength: 50, nullable: false),
                     SiparisId = table.Column<int>(type: "int", nullable: false),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -195,12 +196,12 @@ namespace HamburgerciMVC.REPO.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_EkstraMalzemes", x => x.Id);
+                    table.PrimaryKey("PK_EkstraMalzeme", x => x.EkstraMalzemeId);
                     table.ForeignKey(
-                        name: "FK_EkstraMalzemes_Siparis_SiparisId",
+                        name: "FK_EkstraMalzeme_Siparis_SiparisId",
                         column: x => x.SiparisId,
                         principalTable: "Siparis",
-                        principalColumn: "Id",
+                        principalColumn: "Siparis_Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -208,12 +209,12 @@ namespace HamburgerciMVC.REPO.Migrations
                 name: "Menu",
                 columns: table => new
                 {
-                    Id = table.Column<int>(type: "int", nullable: false)
+                    MenuId = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    MenuAdi = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    MenüAdı = table.Column<string>(type: "nvarchar(50)", maxLength: 50, nullable: false),
                     MenuFiyat = table.Column<double>(type: "float", nullable: false),
-                    ImagePath = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    SiparisId = table.Column<int>(type: "int", nullable: false),
+                    ImagePath = table.Column<string>(type: "nvarchar(1000)", maxLength: 1000, nullable: false),
+                    SiparisId = table.Column<int>(type: "int", nullable: true),
                     CreatedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     DeletedDate = table.Column<DateTime>(type: "datetime2", nullable: false),
                     UpdatedDate = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -221,13 +222,12 @@ namespace HamburgerciMVC.REPO.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Menu", x => x.Id);
+                    table.PrimaryKey("PK_Menu", x => x.MenuId);
                     table.ForeignKey(
                         name: "FK_Menu_Siparis_SiparisId",
                         column: x => x.SiparisId,
                         principalTable: "Siparis",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        principalColumn: "Siparis_Id");
                 });
 
             migrationBuilder.CreateIndex(
@@ -265,8 +265,8 @@ namespace HamburgerciMVC.REPO.Migrations
                 filter: "[NormalizedUserName] IS NOT NULL");
 
             migrationBuilder.CreateIndex(
-                name: "IX_EkstraMalzemes_SiparisId",
-                table: "EkstraMalzemes",
+                name: "IX_EkstraMalzeme_SiparisId",
+                table: "EkstraMalzeme",
                 column: "SiparisId");
 
             migrationBuilder.CreateIndex(
@@ -275,9 +275,9 @@ namespace HamburgerciMVC.REPO.Migrations
                 column: "SiparisId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Siparis_AppUserId",
+                name: "IX_Siparis_UserId",
                 table: "Siparis",
-                column: "AppUserId");
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -298,7 +298,7 @@ namespace HamburgerciMVC.REPO.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
-                name: "EkstraMalzemes");
+                name: "EkstraMalzeme");
 
             migrationBuilder.DropTable(
                 name: "Menu");

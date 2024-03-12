@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HamburgerciMVC.REPO.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20240311094148_init")]
-    partial class init
+    [Migration("20240311213034_init5")]
+    partial class init5
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -120,7 +120,9 @@ namespace HamburgerciMVC.REPO.Migrations
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("EkstraMalzemeId")
+                        .HasColumnOrder(1);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -130,12 +132,16 @@ namespace HamburgerciMVC.REPO.Migrations
                     b.Property<DateTime>("DeletedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<double>("EkstraMalzemeFiyati")
-                        .HasColumnType("float");
+                    b.Property<decimal>("EkstraMalzemeFiyati")
+                        .HasMaxLength(50)
+                        .HasColumnType("decimal(38,17)")
+                        .HasColumnName("EkstraMalzemeFiyati");
 
                     b.Property<string>("EkstraMalzemeName")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)")
+                        .HasColumnName("EkstraMalzemeİsim");
 
                     b.Property<int>("SiparisId")
                         .HasColumnType("int");
@@ -150,14 +156,16 @@ namespace HamburgerciMVC.REPO.Migrations
 
                     b.HasIndex("SiparisId");
 
-                    b.ToTable("EkstraMalzemes");
+                    b.ToTable("EkstraMalzeme", (string)null);
                 });
 
             modelBuilder.Entity("HamburgerciMVC.DATA.Concrate.Menu", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("MenuId")
+                        .HasColumnOrder(1);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
@@ -169,16 +177,21 @@ namespace HamburgerciMVC.REPO.Migrations
 
                     b.Property<string>("ImagePath")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)")
+                        .HasColumnName("ImagePath");
 
                     b.Property<string>("MenuAdi")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)")
+                        .HasColumnName("MenüAdı");
 
                     b.Property<double>("MenuFiyat")
-                        .HasColumnType("float");
+                        .HasColumnType("float")
+                        .HasColumnName("MenuFiyat");
 
-                    b.Property<int>("SiparisId")
+                    b.Property<int?>("SiparisId")
                         .HasColumnType("int");
 
                     b.Property<int>("Status")
@@ -191,25 +204,27 @@ namespace HamburgerciMVC.REPO.Migrations
 
                     b.HasIndex("SiparisId");
 
-                    b.ToTable("Menu");
+                    b.ToTable("Menu", (string)null);
                 });
 
             modelBuilder.Entity("HamburgerciMVC.DATA.Concrate.Siparis", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
+                        .HasColumnType("int")
+                        .HasColumnName("Siparis_Id")
+                        .HasColumnOrder(1);
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("AppUserId")
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<DateTime>("CreatedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime>("DeletedDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<int>("MenuId")
+                        .HasColumnType("int");
 
                     b.Property<int>("SiparisAdedi")
                         .HasColumnType("int");
@@ -225,13 +240,13 @@ namespace HamburgerciMVC.REPO.Migrations
 
                     b.Property<string>("UserId")
                         .IsRequired()
-                        .HasColumnType("nvarchar(max)");
+                        .HasColumnType("nvarchar(450)");
 
                     b.HasKey("Id");
 
-                    b.HasIndex("AppUserId");
+                    b.HasIndex("UserId");
 
-                    b.ToTable("Siparis");
+                    b.ToTable("Siparis", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -350,20 +365,18 @@ namespace HamburgerciMVC.REPO.Migrations
 
             modelBuilder.Entity("HamburgerciMVC.DATA.Concrate.Menu", b =>
                 {
-                    b.HasOne("HamburgerciMVC.DATA.Concrate.Siparis", "Siparis")
+                    b.HasOne("HamburgerciMVC.DATA.Concrate.Siparis", null)
                         .WithMany("Menus")
-                        .HasForeignKey("SiparisId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Siparis");
+                        .HasForeignKey("SiparisId");
                 });
 
             modelBuilder.Entity("HamburgerciMVC.DATA.Concrate.Siparis", b =>
                 {
                     b.HasOne("HamburgerciMVC.DATA.Concrate.AppUser", "AppUser")
                         .WithMany("Siparis")
-                        .HasForeignKey("AppUserId");
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("AppUser");
                 });

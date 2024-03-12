@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace HamburgerMVC.SERVICE.Models.VMs
 {
-    public class MenuGetAllVM
+    public  class MenuGetByIdVM
     {
         public int ID { get; set; }
 
-        public string  Name { get; set; }
-
+        public string Name { get; set; }
         public string ImagePath { get; set; }
+
         public Status Status { get; set; }
     }
 }
