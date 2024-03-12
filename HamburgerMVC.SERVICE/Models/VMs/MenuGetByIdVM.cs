@@ -11,6 +11,7 @@ namespace HamburgerMVC.SERVICE.Models.VMs
     {
         public int ID { get; set; }
 
+        public  double MenuFiyati { get; set; }
         public string Name { get; set; }
         public string ImagePath { get; set; }
 

@@ -1,17 +1,23 @@
 ﻿@model IEnumerable<HamburgerMVC.SERVICE.Models.VMs.MenuGetAllVM>
 
 @{
-   
     Layout = "_LayoutAdmin";
 }
 
 <h1>Listele</h1>
 
-<a  asp-action="Create"  class="btn btn-success fw-bold float-end">Ekle</a>
+<a asp-action="Create" class="btn btn-success fw-bold float-end">Ekle</a>
 
+@if (ViewBag.info  is not null )
+{
+    <div>
+        <div class="alert alert-success w-25" role="alert">
+            Item successfully deleted!
+        </div>
+    </div>
+}
 
-
-<table class="table">
+<table class="table table-hovered">
     <thead>
         <tr>
             <th>
@@ -21,35 +27,48 @@
                 @Html.DisplayNameFor(model => model.Name)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.MenuFiyat)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.ImagePath)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Status)
             </th>
-            <th></th>
+            <th>Update</th>
+            <th>Detail</th>
+            <th>Delete</th>
         </tr>
     </thead>
     <tbody>
-@foreach (var item in Model) {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.ID)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Name)
-            </td>
-            <td>
-                    <img src="~/img/hamburgerPhoto/@item.ImagePath" width="150" height="150" />
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Status)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
-            </td>
-        </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ID)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.MenuFiyat)
+                </td>
+                <td>
+                    <img src="~/img/hamburgerPhoto/@item.ImagePath" width="75" height="75" />
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Status)
+                </td>
+                <td>
+                    <a class="btn btn-outline-warning fw-bold" asp-route-id="@item.ID" asp-action="Edit"> Update</a>
+                </td>
+                <td>
+                    <a class="btn btn-outline-primary fw-bold" asp-route-id="@item.ID" asp-action="Detail"> Detail</a>
+                </td>
+                <td>
+                    <a class="btn btn-outline-danger fw-bold" asp-route-id="@item.ID" asp-action="Delete"> Delete</a>
+                </td>
+            </tr>
+        }
     </tbody>
 </table>

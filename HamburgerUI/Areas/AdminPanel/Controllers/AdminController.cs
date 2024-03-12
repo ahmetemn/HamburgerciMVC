@@ -1,5 +1,6 @@
 ﻿using HamburgerciMVC.DATA.Concrate;
 using HamburgerMVC.SERVICE.Models.Dtos;
+using HamburgerMVC.SERVICE.Models.VMs;
 using HamburgerMVC.SERVICE.Service.MenuService;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -56,12 +57,62 @@ namespace HamburgerUI.Areas.AdminPanel.Controllers
                 return RedirectToAction("Listele");
             }
 
-                return BadRequest();
-
-
-
+            return BadRequest();
 
         }
+
+
+        public async Task<IActionResult> Delete(int id)
+        {
+            var result = await _menuService.Delete(id);
+
+
+         
+            try
+            {
+                if (result > 0)
+                {
+
+                    TempData["info"] = "Deleted"; 
+                  
+                }
+            }
+            catch (Exception)
+            {
+
+                ViewBag.info = "Bilgi Silinemedi";
+                
+            }
+
+
+            return RedirectToAction("Listele");
+
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            var menu = await _menuService.GetMenu(id);
+            return View(menu);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Edit(MenuUpdateVM model)
+        {
+            if (ModelState.IsValid)
+            {
+                ViewBag.Success = false;
+                var result = _menuService.Update(model);
+                if (result > 0)
+                {
+                    ViewBag.Success = true;
+                    return View(model);
+                }
+            }
+            return View(model);
+        }
+
+
+
     }
 
 

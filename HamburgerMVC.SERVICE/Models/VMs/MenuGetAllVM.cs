@@ -13,6 +13,10 @@ namespace HamburgerMVC.SERVICE.Models.VMs
 
         public string  Name { get; set; }
 
+
+        public double MenuFiyat { get; set; }
+
+
         public string ImagePath { get; set; }
         public Status Status { get; set; }
     }
