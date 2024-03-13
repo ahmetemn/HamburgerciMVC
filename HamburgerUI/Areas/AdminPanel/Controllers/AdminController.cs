@@ -16,12 +16,12 @@ namespace HamburgerUI.Areas.AdminPanel.Controllers
     public class AdminController : Controller
     {
         private readonly IMenuService _menuService;
-        private readonly UserManager<IdentityUser> _userManager;
-        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
         private readonly RoleManager<IdentityRole> _roleManager;
 
-        public AdminController(IMenuService menuService, UserManager<IdentityUser> userManager,
-                             SignInManager<IdentityUser> signInManager, RoleManager<IdentityRole> roleManager)
+        public AdminController(IMenuService menuService, UserManager<AppUser> userManager,
+                             SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager)
         {
             this._menuService = menuService;
             _userManager = userManager;
