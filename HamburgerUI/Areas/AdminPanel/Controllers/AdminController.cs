@@ -2,7 +2,9 @@
 using HamburgerMVC.SERVICE.Models.Dtos;
 using HamburgerMVC.SERVICE.Models.VMs;
 using HamburgerMVC.SERVICE.Service.MenuService;
+using HamburgerUI.Models.VMs;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory;
@@ -14,11 +16,44 @@ namespace HamburgerUI.Areas.AdminPanel.Controllers
     public class AdminController : Controller
     {
         private readonly IMenuService _menuService;
+        private readonly UserManager<IdentityUser> _userManager;
+        private readonly SignInManager<IdentityUser> _signInManager;
+        private readonly RoleManager<IdentityRole> _roleManager;
 
-
-        public AdminController(IMenuService menuService)
+        public AdminController(IMenuService menuService, UserManager<IdentityUser> userManager,
+                             SignInManager<IdentityUser> signInManager, RoleManager<IdentityRole> roleManager)
         {
             this._menuService = menuService;
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _roleManager=roleManager;
+        }
+        [HttpGet]
+        public IActionResult Login(string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            return View();
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Login(LoginVM model, string returnUrl = null)
+        {
+            ViewData["ReturnUrl"] = returnUrl;
+            if (ModelState.IsValid)
+            {
+                var result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, model.RememberMe, lockoutOnFailure: false);
+                if (result.Succeeded)
+                {
+                    if (!string.IsNullOrEmpty(returnUrl))
+                        {
+                            return Redirect(returnUrl);
+                        }
+                        return RedirectToAction("Listele", "Admin");
+                }
+                ModelState.AddModelError(string.Empty, "Gecersiz Giris.");
+                return View(model);
+            }
+            return View(model);
         }
 
         public async Task<IActionResult> Listele()
@@ -67,28 +102,19 @@ namespace HamburgerUI.Areas.AdminPanel.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             var result = await _menuService.Delete(id);
-
-
-         
-            try
+            if (result > 0)
+                return RedirectToAction("Listele");
+            else
             {
-                if (result > 0)
-                {
-
-                    TempData["info"] = "Deleted"; 
-                  
-                }
-            }
-            catch (Exception)
-            {
-
-                ViewBag.info = "Bilgi Silinemedi";
-                
+                return Content("Ürün Silinemedi");
             }
 
+        }
 
-            return RedirectToAction("Listele");
-
+        public async Task<IActionResult> Details(int id)
+        {
+            var menu=await _menuService.GetMenu(id); 
+            return View(menu);
         }
 
 
@@ -129,7 +155,7 @@ namespace HamburgerUI.Areas.AdminPanel.Controllers
             return View(menuUpdateVM);
         }
         
-        
+
 
     }
 }

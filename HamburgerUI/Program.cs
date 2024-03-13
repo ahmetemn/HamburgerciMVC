@@ -2,6 +2,7 @@ using HamburgerciMVC.REPO.Abstract;
 using HamburgerciMVC.REPO.ConcrateREPO;
 using HamburgerciMVC.REPO.Context;
 using HamburgerMVC.SERVICE.Service.MenuService;
+using Microsoft.AspNetCore.Identity;
 using System;
 
 namespace HamburgerUI
@@ -22,6 +23,7 @@ namespace HamburgerUI
 
             // Add services to the container.
             builder.Services.AddControllersWithViews();
+            builder.Services.AddIdentity<IdentityUser, IdentityRole>().AddEntityFrameworkStores<ApplicationContext>().AddDefaultTokenProviders();
 
             var app = builder.Build();
 
@@ -34,6 +36,7 @@ namespace HamburgerUI
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.MapAreaControllerRoute(
