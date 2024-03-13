@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 
 namespace HamburgerciMVC.REPO.Context
 {
-    public  class ApplicationContext:IdentityDbContext<AppUser , AppRole ,string>
+    public  class ApplicationContext:IdentityDbContext<AppUser,AppRole ,string>
     {
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)

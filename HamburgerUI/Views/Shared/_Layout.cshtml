@@ -57,10 +57,22 @@
                     <div class="col-xl-5 col-md-7 top-social-agile text-md-right text-center pr-sm-0 mt-md-0 mt-2">
                         <div class="row middle-flex">
                             <div class="col-lg-5 col-4 top-w3layouts p-md-0 text-right">
-                                <!-- login -->
-                                <a  asp-controller="Auth" asp-action="Index"  class="btn login-button-2 text-uppercase text-wh">
-                                    <span class="fa fa-sign-in mr-2"></span>Giriş Yap
-                                </a>
+                             
+
+                                @{
+                                    if (User.Identity.IsAuthenticated)
+                                    {
+                                        <a asp-controller="Auth" asp-action="Logout" class="btn login-button-2 text-uppercase text-wh">
+                                            <span class="fa fa-sign-in mr-2"></span>Çıkış Yap
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a asp-controller="Auth" asp-action="Index" class="btn login-button-2 text-uppercase text-wh">
+                                            <span class="fa fa-sign-in mr-2"></span>Giriş Yap
+                                        </a>
+                                    }
+                                }
                                 <!-- //login -->
                             </div>
                             <div class="col-lg-7 col-8 social-grid-w3">
@@ -134,7 +146,22 @@
                             </li>
                             <li><a asp-controller="Menu" asp-action="Index">Menu</a></li>
                             <li><a href="contact.html">İletişim</a></li>
-                            <li><a asp-area="AdminPanel" asp-controller="Admin" asp-action="Login">Admin</a></li>
+                        
+                            @{
+                                if (User.Identity.IsAuthenticated)
+                                {
+                                    if (User.IsInRole("Admin"))
+                                    {
+                                        <li><a asp-area="AdminPanel" asp-controller="Admin" asp-action="Listele">Admin</a></li>
+                                    }
+                                    else
+                                    {
+                                        
+                                    }
+                                }
+
+                            }
+
                             <li>
                                 <!-- login -->
                                 <a href="https://w3layouts.com/" target="_blank" class="dwn-button ml-lg-5">

@@ -1,0 +1,40 @@
+﻿@using HamburgerUI.Areas.AdminPanel.Models;
+@model  SetRoleVM
+@{
+    ViewData["Title"] = "SetRole";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>SetRole</h1>
+
+<div>
+    <h4>RegisterVM</h4>
+    <hr />
+     <form asp-action="SetRole">
+    <dl class="row">
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.AppUser.UserName)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.AppUser.UserName)
+        </dd>
+       
+
+        <dt class="col-sm-2">
+            Rol Seçiniz
+        </dt>
+        <dd class="col-sm-10">
+            <select asp-items="@(new SelectList(Model.Roles, "Name", "Name"))" asp-for="Role"></select>
+        </dd>
+
+        <dt class="col-sm-2"></dt>
+        <dt class="col-sm-10">
+            <input type="submit" value="Rol Ekle" />
+        </dt>
+    </dl>
+    </form>
+</div>
+<div>
+    @Html.ActionLink("Edit", "Edit", new { /* id = Model.PrimaryKey */ }) |
+    <a asp-action="Index">Back to List</a>
+</div>

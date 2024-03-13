@@ -7,7 +7,9 @@ using System.Threading.Tasks;
 
 namespace HamburgerciMVC.DATA.Concrate
 {
-    public  class AppRole :IdentityRole
+    public class AppRole : IdentityRole
     {
+        public AppRole() : base() { }
+        public AppRole(string roleName) : base(roleName) { }
     }
 }

@@ -1,0 +1,56 @@
+﻿@model IEnumerable<HamburgerUI.Areas.AdminPanel.Models.GetRoleVM>
+
+@{
+    ViewData["Title"] = "GetRole";
+    Layout = "~/Areas/AdminPanel/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<h1>GetRole</h1>
+
+<p>
+    <a asp-action="CreateRole">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.RoleId)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.RoleName)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.RoleName)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
+                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+
+<form asp-action="CreateRole" method="get">
+    <div class="row">
+        <div class="col-6">
+            <label class="form-control">Role Name: </label>
+            <input type="text" name="roleName" class="form-control" />
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-6">
+            <input type="submit" value="Role Oluştur" class="btn btn-primary" />
+        </div>
+    </div>
+</form>

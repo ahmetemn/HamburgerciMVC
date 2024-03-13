@@ -3,6 +3,7 @@ using HamburgerciMVC.REPO.Context;
 using HamburgerUI.Models.VMs;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System.Diagnostics.Metrics;
 
 namespace HamburgerUI.Controllers
@@ -11,17 +12,16 @@ namespace HamburgerUI.Controllers
     {
 
 
-        private readonly ApplicationContext _applicationContext; 
+       
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
-        private readonly RoleManager<IdentityRole> _roleManager;
+        private readonly RoleManager<AppRole> _roleManager; 
 
-        public AuthController(ApplicationContext applicationContext , UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, RoleManager<IdentityRole> roleManager)
+        public AuthController(ApplicationContext applicationContext , UserManager<AppUser> userManager, SignInManager<AppUser> signInManager , RoleManager<AppRole> roleManager)
         {
-            this._applicationContext = applicationContext;
             _userManager = userManager;
             _signInManager = signInManager;
-            _roleManager = roleManager;
+            _roleManager=roleManager;
 
         }
 
@@ -32,28 +32,37 @@ namespace HamburgerUI.Controllers
 		}
 
 
-        [HttpPost]
-		public async  Task<IActionResult> Register(RegisterVM loginVM)
-		{
+  //      [HttpPost]
+		//public async  Task<IActionResult> Register(RegisterVM loginVM)
+		//{
 
-            var user = new AppUser
-            {
-                UserName = loginVM.UserName,
-                Email = loginVM.Email,
-                PhoneNumber = loginVM.PhoneNumber,
+  //          var user = new AppUser
+  //          {
+  //              UserName = loginVM.UserName,
+  //              Email = loginVM.Email,
+  //              PhoneNumber = loginVM.PhoneNumber,
 
-            }; 
-            var result = await _userManager.CreateAsync(user);  
-            if (result.Succeeded)
-            {
+  //          }; 
+  //          var result = await _userManager.CreateAsync(user,loginVM.Password);  
+  //          if (result.Succeeded)
+  //          {
 
-                await _signInManager.PasswordSignInAsync(loginVM.UserName, loginVM.Password, false, false);
-                return  RedirectToAction("Index", "Home"); 
-            }
+  //              await _signInManager.PasswordSignInAsync(loginVM.UserName, loginVM.Password, false, false);
+  //              return  RedirectToAction("Index", "Home"); 
+  //          }
+
+  //          else
+  //          {
+
+  //              foreach(IdentityError item in  result.Errors)
+  //              {
+  //                  ModelState.AddModelError("", item.Description);
+  //              }
+  //          }
 
 
-			return View("Index"); 
-		}
+		//	return View("Index"); 
+		//}
 
 
         [HttpPost]
@@ -73,6 +82,12 @@ namespace HamburgerUI.Controllers
             return View(model);
         }
 
+        [HttpGet]
+        public async Task<IActionResult> Logout()
+        {
+            await _signInManager.SignOutAsync();
+            return RedirectToAction("Index", "Home");
+        }
 
     }
 }
