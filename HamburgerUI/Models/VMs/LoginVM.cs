@@ -13,10 +13,6 @@ namespace HamburgerUI.Models.VMs
 
 
         public string UserName { get; set; }
-
-
-
-   
         public string Password { get; set; }
 
     }

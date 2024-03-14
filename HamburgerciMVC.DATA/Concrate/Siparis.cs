@@ -20,7 +20,6 @@ namespace HamburgerciMVC.DATA.Concrate
 
         public ICollection<EkstraMalzeme> EkstraMalzemes { get; set; }
 
-
         public  string UserId { get; set; }
         public AppUser AppUser { get; set; }    
 
