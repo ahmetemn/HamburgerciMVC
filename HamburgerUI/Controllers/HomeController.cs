@@ -1,5 +1,8 @@
-﻿using HamburgerMVC.SERVICE.Service.MenuService;
+﻿using HamburgerciMVC.DATA.Concrate;
+using HamburgerMVC.SERVICE.Service.MenuService;
 using HamburgerUI.Models;
+using HamburgerUI.Models.VMs;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -42,6 +45,24 @@ namespace HamburgerUI.Controllers
 
             return View(burger); 
         }
+
+       
+
+        List<SiparisVM> siparisVMs = new List<SiparisVM>();
+        public ActionResult SepetListele(string burgerAdi , double ToplamFiyat , List<EkstraMalzeme> ekstraMalzemes) {
+
+            SiparisVM siparis = new SiparisVM()
+            {
+                UrunAdi = burgerAdi,
+                Fiyat = ToplamFiyat,
+                Adet=1,
+                EkstraMalzemes = ekstraMalzemes
+            };
+            siparisVMs .Add(siparis);
+            return View(siparisVMs); 
+        }
+
+
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

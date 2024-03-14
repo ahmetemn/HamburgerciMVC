@@ -16,7 +16,7 @@
         </div>
         <div class="card col-5 p-2 m-2" style="border-radius:30px">
             <div>
-                <h5 class="text-black fw-bold mt-2 p-2 ">Burger Adı:<i class="px-3 text-black">@Model.Name</i></h5>
+                <h5 class="text-black fw-bold mt-2 p-2 ">Burger Adı:<i id="burgerAdi" class="px-3 text-black">@Model.Name</i></h5>
             </div>
 
             <div class="d-flex">
@@ -27,15 +27,15 @@
 
 
                 <div class="dropdown p-2 mt-2">
-                    <button class="btn btn-outline-danger btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                    <button id="boyutSecBtn" class="btn btn-outline-danger btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
 
                         Boyut Seç
 
                     </button>
                     <ul class="dropdown-menu">
-                        <li><a class="dropdown-item" href="#">Action</a></li>
-                        <li><a class="dropdown-item" href="#">Another action</a></li>
-                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        <li><a id="actionItem" class="dropdown-item" href="#">Action</a></li>
+                        <li><a id="anotherActionItem" class="dropdown-item" href="#">Another action</a></li>
+                        <li><a id="somethingElseItem" class="dropdown-item" href="#">Something else here</a></li>
                     </ul>
                 </div>
                 </h5>
@@ -47,21 +47,21 @@
 
                 <div class="d-flex flex-wrap">
                     <div class="form-check  ml-1 mb-2">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
-                        <label class="form-check-label" for="flexCheckDefault1">
+                        <input class="form-check-input" type="checkbox" value="Ketçap" id="ketcapCheckbox">
+                        <label class="form-check-label" for="ketcapCheckbox">
                             Ketçap
                         </label>
                     </div>
                     <div class="form-check ml-1 ml-2 mb-2">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked1">
-                        <label class="form-check-label" for="flexCheckChecked1">
+                        <input class="form-check-input" type="checkbox" value="Mayonez" id="mayanozCheckbox">
+                        <label class="form-check-label" for="mayanozCheckbox">
                             Mayanoz
                         </label>
                     </div>
                     <div class="form-check ml-1 ml-2 mb-2">
-                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2">
-                        <label class="form-check-label" for="flexCheckChecked2">
-                            Ketçap
+                        <input class="form-check-input" type="checkbox" value="Soğan" id="soganCheckbox">
+                        <label class="form-check-label" for="soganCheckbox">
+                            Soğan
                         </label>
                     </div>
 
@@ -70,12 +70,13 @@
             </div>
             <div class="mt-4 d-flex justify-content-end">
                 <div style="text-align: right;">
-                    <p class="text-success" style="font-weight:900">Toplam Fiyat : 122₺</p>
-                    <a class="btn btnsepetekle btn-warning"  style="font-weight:600">Sepete Ekle</a>
+                    <p class="text-success toplamFiyat" style="font-weight:900">Toplam Fiyat : 122₺</p>
+                    <a id="addToCartBtn" class="btn btnsepetekle btn-warning" onclick="addToCart()" style="font-weight:600">Sepete Ekle</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
+
 
 
