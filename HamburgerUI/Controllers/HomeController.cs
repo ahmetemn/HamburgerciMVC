@@ -1,4 +1,5 @@
-﻿using HamburgerUI.Models;
+﻿using HamburgerMVC.SERVICE.Service.MenuService;
+using HamburgerUI.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -8,19 +9,38 @@ namespace HamburgerUI.Controllers
     {
         private readonly ILogger<HomeController> _logger;
 
-        public HomeController(ILogger<HomeController> logger)
+
+        private readonly IMenuService _menuService; 
+        public HomeController(ILogger<HomeController> logger , IMenuService menuService)
         {
             _logger = logger;
+            _menuService = menuService;
+        
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+
+            var data = await _menuService.GetAllMenu();
+            return View(data);
+        
         }
 
         public IActionResult Privacy()
         {
             return View();
+        }
+
+
+        [HttpGet]
+        public async Task<IActionResult> GetMenuForName(int id)
+        {
+
+
+            var burger = await _menuService.GetMenu(id); 
+
+
+            return View(burger); 
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]

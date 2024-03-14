@@ -16,6 +16,7 @@
 
   <ItemGroup>
     <Folder Include="Areas\AdminPanel\Data\" />
+    <Folder Include="Views\MenuDetay\" />
   </ItemGroup>
 
 </Project>

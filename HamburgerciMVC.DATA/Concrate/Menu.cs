@@ -13,6 +13,8 @@ namespace HamburgerciMVC.DATA.Concrate
 
         public string ImagePath { get; set; }
 
+        //public string Description  { get; set; }
+
 
     }
 }

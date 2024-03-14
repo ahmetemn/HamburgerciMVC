@@ -1,4 +1,5 @@
-﻿using System;
+﻿using HamburgerciMVC.DATA.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -12,6 +13,9 @@ namespace HamburgerMVC.SERVICE.Models.Dtos
 
         public double MenuFiyat { get; set; }
 
+        public string Description { get; set; }
+
+        public SiparisBoyutu SiparisBoyutu { get; set; } = SiparisBoyutu.Normal; 
         public string ImagePath { get; set; }
 
     }

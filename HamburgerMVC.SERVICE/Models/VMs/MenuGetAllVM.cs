@@ -17,6 +17,8 @@ namespace HamburgerMVC.SERVICE.Models.VMs
         public double MenuFiyat { get; set; }
 
 
+        public string Description { get; set; }
+
         public string ImagePath { get; set; }
         public Status Status { get; set; }
     }

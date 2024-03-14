@@ -1,0 +1,81 @@
+﻿@using HamburgerMVC.SERVICE.Models.VMs;
+@model MenuUpdateVM
+
+
+@{
+    ViewData["Title"] = "GetMenuForName";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<div class="container">
+
+    <div class="row p-3 mt-2 gap-2">
+        <div class="col-6  p-3">
+            <img src="~/img/hamburgerPhoto/@Model.ImagePath" class="w-100" style="max-height:350px;min-height:350px " />
+        </div>
+        <div class="card col-5 p-2 m-2" style="border-radius:30px">
+            <div>
+                <h5 class="text-black fw-bold mt-2 p-2 ">Burger Adı:<i class="px-3 text-black">@Model.Name</i></h5>
+            </div>
+
+            <div class="d-flex">
+                <div>
+                    <h5 class=" text-black  fw-bold mt-2 p-2">
+                        Boyutu:
+                </div>
+
+
+                <div class="dropdown p-2 mt-2">
+                    <button class="btn btn-outline-danger btn-sm dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+
+                        Boyut Seç
+
+                    </button>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Action</a></li>
+                        <li><a class="dropdown-item" href="#">Another action</a></li>
+                        <li><a class="dropdown-item" href="#">Something else here</a></li>
+                    </ul>
+                </div>
+                </h5>
+            </div>
+
+
+            <div>
+                <h5 class="text-black fw-bold mt-2 p-2">Ekstra Malzeme Seç</h5>
+
+                <div class="d-flex flex-wrap">
+                    <div class="form-check  ml-1 mb-2">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault1">
+                        <label class="form-check-label" for="flexCheckDefault1">
+                            Ketçap
+                        </label>
+                    </div>
+                    <div class="form-check ml-1 ml-2 mb-2">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked1">
+                        <label class="form-check-label" for="flexCheckChecked1">
+                            Mayanoz
+                        </label>
+                    </div>
+                    <div class="form-check ml-1 ml-2 mb-2">
+                        <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked2">
+                        <label class="form-check-label" for="flexCheckChecked2">
+                            Ketçap
+                        </label>
+                    </div>
+
+                    <!-- Diğer ekstra malzeme seçenekleri buraya eklenebilir -->
+                </div>
+            </div>
+            <div class="mt-4 d-flex justify-content-end">
+                <div style="text-align: right;">
+                    <p class="text-success" style="font-weight:900">Toplam Fiyat : 122₺</p>
+                    <a class="btn btnsepetekle btn-warning"  style="font-weight:600">Sepete Ekle</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+

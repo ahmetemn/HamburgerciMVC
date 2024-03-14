@@ -9,8 +9,9 @@ namespace HamburgerciMVC.DATA.Enums
     public enum  SiparisBoyutu
     {
 
-        Buyuk, 
-        Orta, 
-        Kucuk
+        Normal,
+        Buyuk,
+        EkstraBuyuk,
+
     }
 }

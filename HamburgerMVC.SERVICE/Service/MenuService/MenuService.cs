@@ -65,6 +65,7 @@ namespace HamburgerMVC.SERVICE.Service.MenuService
                 ID = x.Id,
                 Name = x.MenuAdi,
                 ImagePath = x.ImagePath, 
+                //Description=x.Description,
                 MenuFiyat = x.MenuFiyat,    
                 Status = x.Status
             }, orderBy: x => x.OrderBy(x => x.MenuAdi));
