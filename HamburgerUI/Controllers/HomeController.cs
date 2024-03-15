@@ -46,10 +46,17 @@ namespace HamburgerUI.Controllers
             return View(burger); 
         }
 
-       
+        public async Task<IActionResult> IcecekListele()
+        {
+            var icecek=await _menuService.İcecekMenuList();
+            return View(icecek);
+        }
+
+
+
 
         List<SiparisVM> siparisVMs = new List<SiparisVM>();
-        public ActionResult SepetListele(string burgerAdi , double ToplamFiyat , List<EkstraMalzeme> ekstraMalzemes) {
+        public ActionResult SepetListele(string burgerAdi , double ToplamFiyat , [FromBody]List<EkstraMalzeme> ekstraMalzemes) {
 
             SiparisVM siparis = new SiparisVM()
             {

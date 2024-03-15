@@ -11,6 +11,8 @@ namespace HamburgerUI.Models.VMs
 
         public double Fiyat { get; set; }
 
+        public Icecek icecek { get; set; }
+
         public List<EkstraMalzeme> EkstraMalzemes { get; set; } 
 
 

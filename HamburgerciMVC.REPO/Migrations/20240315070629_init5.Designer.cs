@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace HamburgerciMVC.REPO.Migrations
 {
     [DbContext(typeof(ApplicationContext))]
-    [Migration("20240312121816_init7")]
-    partial class init7
+    [Migration("20240315070629_init5")]
+    partial class init5
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -157,6 +157,53 @@ namespace HamburgerciMVC.REPO.Migrations
                     b.HasIndex("SiparisId");
 
                     b.ToTable("EkstraMalzeme", (string)null);
+                });
+
+            modelBuilder.Entity("HamburgerciMVC.DATA.Concrate.Icecek", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasColumnName("IcecekId")
+                        .HasColumnOrder(1);
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<DateTime>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<decimal>("Fiyat")
+                        .HasMaxLength(50)
+                        .HasColumnType("decimal(38,17)")
+                        .HasColumnName("İçecekFiyatı");
+
+                    b.Property<string>("IcecekAdi")
+                        .IsRequired()
+                        .HasMaxLength(150)
+                        .HasColumnType("nvarchar(150)")
+                        .HasColumnName("İçecek Adı");
+
+                    b.Property<string>("ImagePath")
+                        .IsRequired()
+                        .HasMaxLength(1000)
+                        .HasColumnType("nvarchar(1000)")
+                        .HasColumnName("ImagePath");
+
+                    b.Property<int>("SiparisBoyutu")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("İçecekler", (string)null);
                 });
 
             modelBuilder.Entity("HamburgerciMVC.DATA.Concrate.Menu", b =>

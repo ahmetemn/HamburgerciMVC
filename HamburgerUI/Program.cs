@@ -19,6 +19,7 @@ namespace HamburgerUI
 
             builder.Services.AddDbContext<ApplicationContext>();
             builder.Services.AddScoped<IMenuHamburgerREPO,MenuHamburgerREPO>();
+            builder.Services.AddScoped<IIceceklerREPO,IceceklerREPO>();
 
             builder.Services.AddScoped<IMenuService, MenuService>();
             builder.Services.AddIdentity<AppUser, AppRole>(options =>

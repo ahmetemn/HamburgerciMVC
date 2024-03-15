@@ -1,0 +1,20 @@
+﻿@model IEnumerable<HamburgerMVC.SERVICE.Models.VMs.IcecekListeVM>
+
+@{
+    ViewData["Title"] = "IcecekListele";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-center">İçecekler</h1>
+
+
+
+<div class="card" style="width: 18rem;">
+    <img src="@Html.DisplayNameFor(model=>model.ImagePath)" class="card-img-top" alt="...">
+    <div class="card-body">
+        <h5 class="card-title"> @Html.DisplayNameFor(model => model.Name)</h5>
+        <p class="card-text"> @Html.DisplayNameFor(model => model.Fiyat)</p>
+        <a asp-action="SepetListele"asp-controller="Home" class="btn btn-primary">Sepete Ekle</a>
+    </div>
+</div>
+

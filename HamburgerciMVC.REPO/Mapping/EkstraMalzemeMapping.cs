@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace HamburgerciMVC.DATA.Mapping
 {
-    internal class EkstraMalzemeMapping : IEntityTypeConfiguration<EkstraMalzeme>
+    public class EkstraMalzemeMapping : IEntityTypeConfiguration<EkstraMalzeme>
     {
         public void Configure(EntityTypeBuilder<EkstraMalzeme> builder)
         {

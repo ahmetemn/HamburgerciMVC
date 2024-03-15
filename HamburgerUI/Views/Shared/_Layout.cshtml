@@ -75,17 +75,17 @@
                                 @{
                                     if (User.Identity.IsAuthenticated)
                                     {
-                                        <a asp-controller="Auth" asp-action="Logout" class="btn login-button-2 text-uppercase text-wh">
-                                            <span class="fa fa-sign-in mr-2 fw-bold"></span>Çıkış Yap
-                                        </a>
+                                                <a asp-controller="Auth" asp-action="Logout" class="btn login-button-2 text-uppercase text-wh">
+                                                    <span class="fa fa-sign-in mr-2 fw-bold"></span>Çıkış Yap
+                                                </a>
                                     }
                                     else
                                     {
-                                        <a asp-controller="Auth" asp-action="Index" class="btn login-button-2 text-uppercase text-wh">
-                                            <span class="fa fa-sign-in mr-2 fw-bold" style="font-weight:600"></span>
+                                                <a asp-controller="Auth" asp-action="Index" class="btn login-button-2 text-uppercase text-wh">
+                                                    <span class="fa fa-sign-in mr-2 fw-bold" style="font-weight:600"></span>
 
-                                            <span style="font-weight:900">Giris Yap </span>
-                                        </a>
+                                                    <span style="font-weight:900">Giris Yap </span>
+                                                </a>
                                     }
                                 }
                                 <!-- //login -->
@@ -152,7 +152,7 @@
                                 <a class="text-decoration-none fw-bold">Menuler <span class="fa fa-angle-down" aria-hidden="true"></span></a>
                                 <input type="checkbox" id="drop-3" />
                                 <ul>
-                                    <li><a class="drop-text text-decoration-none fw-bold" href="#services">İçecekler</a></li>
+                                    <li><a class="drop-text text-decoration-none fw-bold" asp-controller="Home" asp-action="IcecekListele">İçecekler</a></li>
                                     <li><a class="drop-text text-decoration-none fw-bold" href="#services">Burgerlar</a></li>
                                     <li><a class="drop-text text-decoration-none fw-bold" href="#services">Burger Menuler</a></li>
                                 </ul>
@@ -165,7 +165,7 @@
                                 {
                                     if (User.IsInRole("Admin"))
                                     {
-                                        <li class="p-1"><a class="text-decoration-none  fw-bold" asp-area="AdminPanel" asp-controller="Admin" asp-action="Listele">Admin</a></li>
+                                                <li class="p-1"><a class="text-decoration-none  fw-bold" asp-area="AdminPanel" asp-controller="Admin" asp-action="Listele">Admin</a></li>
                                     }
                                     else
                                     {
@@ -372,12 +372,12 @@
 
             // Bilgileri POST isteği ile gönder
             $.ajax({
-                type: 'GET',
+                type: 'POST',
                 url: '/Home/SepetListele',
                 data: {
                     burgerAdi: burgerAdi,
                     toplamFiyat: toplamFiyat,
-                    ekstraMalzemeler: ekstraMalzemeler
+                    ekstraMalzemeler: ekstraMalzemeler.map(em => ({ Ad: em }))
                 },
                 success: function (data) {
                     alert(data);

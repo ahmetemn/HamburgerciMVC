@@ -15,7 +15,7 @@ namespace HamburgerciMVC.DATA.Concrate
 
 
         public double Fiyat { get; set; }
-
+        public string ImagePath { get; set; }
         public SiparisBoyutu SiparisBoyutu { get; set; }
 
     }

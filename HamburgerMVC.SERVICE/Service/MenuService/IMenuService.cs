@@ -25,5 +25,8 @@ namespace HamburgerMVC.SERVICE.Service.MenuService
         Task<List<MenuGetAllVM>> GetAllActiveMenu();
 
         Task<MenuUpdateVM> GetMenu(int id);
-    }
+
+       Task<List<IcecekListeVM>> İcecekMenuList();
+
+	}
 }

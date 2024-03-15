@@ -18,13 +18,15 @@ namespace HamburgerciMVC.REPO.Context
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=LAPTOP-12QQ6NC6\AHMET;Database=KD-19-HAMBURGERCİMVC;Trusted_Connection=True;MultipleActiveResultSets=false;TrustServerCertificate=True;");
+			optionsBuilder.UseSqlServer(@"Server=DESKTOP-J56Q762;Database=HamburgDb81;Trusted_Connection=True;");
 
-        }
 
-        public DbSet<EkstraMalzeme> EkstraMalzemes { get; set; }    
+		}
+
+		public DbSet<EkstraMalzeme> EkstraMalzemes { get; set; }    
 
         public DbSet<Menu> Menu {  get; set; }  
+        public DbSet<Icecek> Iceceks { get; set; }
 
         public DbSet<Siparis> Siparis { get; set; }
 
